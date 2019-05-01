@@ -3,7 +3,6 @@ package com.example.jpa.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -24,7 +23,7 @@ public class Mother {
     public Mother(final Long id, final List<Daughter> daughters) {
         this.id = id;
 
-        if(CollectionUtils.isEmpty(daughters)) this.daughters = new ArrayList<>();
+        if(daughters == null) this.daughters = new ArrayList<>();
         else {
             daughters.forEach(daughter -> daughter.setMother(this));
             this.daughters = daughters;
