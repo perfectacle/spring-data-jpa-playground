@@ -19,16 +19,16 @@ public class Mother {
     private Long id;
 
     @OneToMany(mappedBy = "mother", cascade = CascadeType.ALL)
-    private List<Daughter> daughters = new ArrayList<>();
+    private Set<Daughter> daughters = new HashSet<>();
 
     @OneToMany(mappedBy = "mother", cascade = CascadeType.ALL)
     private Set<Son> sons = new HashSet<>();
 
     @Builder
-    public Mother(final Long id, final List<Daughter> daughters, final Set<Son> sons) {
+    public Mother(final Long id, final Set<Daughter> daughters, final Set<Son> sons) {
         this.id = id;
 
-        if(daughters == null) this.daughters = new ArrayList<>();
+        if(daughters == null) this.daughters = new HashSet<>();
         else {
             daughters.forEach(daughter -> daughter.setMother(this));
             this.daughters = daughters;
