@@ -1,5 +1,11 @@
 package com.example.jpa.domain;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface MotherRepository extends JpaRepository<Mother, Long> {}
+import java.util.List;
+
+public interface MotherRepository extends JpaRepository<Mother, Long> {
+    @EntityGraph(attributePaths = "daughters")
+    List<Mother> findAllWithDaughtersBy();
+}
