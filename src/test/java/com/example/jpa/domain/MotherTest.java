@@ -14,6 +14,6 @@ public class MotherTest {
 
     @Test
     public void test() {
-        repository.findById(1L).ifPresent(mother -> mother.getDaughters().size());
+        repository.findAll().forEach(mother -> mother.getDaughters().size());
     }
 }
