@@ -11,4 +11,7 @@ public interface MotherRepository extends JpaRepository<Mother, Long> {
 
     @EntityGraph(attributePaths = "sons")
     List<Mother> findAllWithSonsBy();
+
+    @EntityGraph(attributePaths = {"daughters", "sons"})
+    List<Mother> findAllWithChildrenBy();
 }

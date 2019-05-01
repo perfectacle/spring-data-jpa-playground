@@ -14,6 +14,9 @@ public class MotherTest {
 
     @Test
     public void test() {
-        repository.findAllWithSonsBy().forEach(mother -> mother.getSons().size());
+        repository.findAllWithChildrenBy().forEach(mother -> {
+            mother.getDaughters().size();
+            mother.getSons().size();
+        });
     }
 }
