@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -20,10 +22,10 @@ public class Mother {
     private List<Daughter> daughters = new ArrayList<>();
 
     @OneToMany(mappedBy = "mother", cascade = CascadeType.ALL)
-    private List<Son> sons = new ArrayList<>();
+    private Set<Son> sons = new HashSet<>();
 
     @Builder
-    public Mother(final Long id, final List<Daughter> daughters, final List<Son> sons) {
+    public Mother(final Long id, final List<Daughter> daughters, final Set<Son> sons) {
         this.id = id;
 
         if(daughters == null) this.daughters = new ArrayList<>();
@@ -32,7 +34,7 @@ public class Mother {
             this.daughters = daughters;
         }
 
-        if(sons == null) this.sons = new ArrayList<>();
+        if(sons == null) this.sons = new HashSet<>();
         else {
             sons.forEach(son -> son.setMother(this));
             this.sons = sons;
