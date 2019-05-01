@@ -8,4 +8,7 @@ import java.util.List;
 public interface MotherRepository extends JpaRepository<Mother, Long> {
     @EntityGraph(attributePaths = "daughters")
     List<Mother> findAllWithDaughtersBy();
+
+    @EntityGraph(attributePaths = "sons")
+    List<Mother> findAllWithSonsBy();
 }
